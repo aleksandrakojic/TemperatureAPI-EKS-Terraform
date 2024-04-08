@@ -55,3 +55,5 @@ curl -X GET "http://<domain>?from=Celsius&to=Kelvin&temperature=36"
 # response
 # {"value":309.15,"unit":"Kelvin"}
 ```
+
+*Note: Make sure to do terraform destroy after you finish! as EKS costs 0.10$ per hour*
