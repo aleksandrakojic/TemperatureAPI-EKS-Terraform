@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temperature-service
+  namespace: temp-calculator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: temperature-service
+  template:
+    metadata:
+      labels:
+        app: temperature-service
+    spec:
+      containers:
+      - name: temperature-service
+        image: amrelhewy/temperature-service:2.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: "90Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: temperature-service
+  namespace: temp-calculator
+spec:
+  selector:
+    app: temperature-service
+  ports:
+  - port: 8080
